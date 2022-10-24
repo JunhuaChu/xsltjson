@@ -1,4 +1,4 @@
-<project name="XSLTJSON" default="examples">
+<project name="XSLTJSON" default="treeJson">
 	<description>
 		Simple project to transform arbitrary XML files to JSON format.
 	</description>
@@ -23,6 +23,15 @@
 		<mkdir dir="${xsltjson.build}"/>
 	</target>
 	
+	<target name="treeJson" depends="init">
+		<xslt basedir="input/trees" destdir="${xsltjson.build}/trees" extension=".json"
+		style="${xsltjson.config}/xml-to-json-tree.xsl">
+			<classpath>
+				<path refid="saxon.classpath"/>
+			</classpath>
+		</xslt>
+	</target>
+
 	<target name="examples" depends="init">
 		<xslt basedir="input/examples" destdir="${xsltjson.build}/examples" extension=".json"
 		style="${xsltjson.config}/xml-to-json.xsl">
@@ -40,20 +49,7 @@
 			</classpath>
 		</xslt>
 	</target>
-
-
-	<target name="test" depends="init">
-		<xslt basedir="input/tests" destdir="${xsltjson.build}/tests" extension=".xml"
-		style="${xsltjson.config}/test.xsl">
-			<classpath>
-				<path refid="saxon.classpath"/>
-			</classpath>
-		</xslt>
-	</target>
-<!--
-	<target name="test-xalan" depends="init">
-	</target>
--->
+	
 	<target name="clean">
 		<delete dir="${xsltjson.build}"/>
 	</target>

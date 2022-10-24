@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="2.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:json="http://json.org/">
+    <xsl:import href="xml-to-json.xsl"/>
+    <xsl:template match="my-node">
+        <xsl:value-of select="json:generate(.)"/>
+    </xsl:template>
+</xsl:stylesheet>
+<test>
+    <prompt>What is 2+2</prompt>
+    <choice>1</choice>
+    <choice>3</choice>
+    <choice>4</choice>
+    <prompt>What is 10*10</prompt>
+    <choice>10</choice>
+    <choice>100</choice>
+    <choice>1000</choice>
+</test>
